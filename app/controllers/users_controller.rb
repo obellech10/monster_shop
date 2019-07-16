@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   def register
   end
 
+  def login
+  end
+
   def create
     user = User.create(user_params)
     if user.save
