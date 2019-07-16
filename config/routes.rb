@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   post '/profile', to: 'users#create', as: :new_profile
   get '/profile', to: 'users#show', as: :profile
   get '/login', to: 'users#login', as: :login
+
+  post '/login', to: 'sessions#create'
 end
