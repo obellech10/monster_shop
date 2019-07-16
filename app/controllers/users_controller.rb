@@ -4,12 +4,16 @@ class UsersController < ApplicationController
 
   def create
     user = User.create(user_params)
-    flash[:success] = "#{user.name} is now registered and logged in!"
-    redirect_to profile_path
+    if user.save
+      flash[:success] = "#{user.name} is now registered and logged in!"
+      redirect_to profile_path
+    else
+      flash[:error] = user.errors.full_messages.to_sentence
+      render :register
+    end
   end
 
   def show
-
   end
 
   private
