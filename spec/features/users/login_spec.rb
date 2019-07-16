@@ -17,5 +17,21 @@ RSpec.describe "User can Login", type: :feature do
         expect(page).to have_content("#{user.name} is logged in.")
       end
     end
+
+    context "When I visit the login page and submit invalid information" do
+      it "I am redirected to the login page and see a flash message that tells me that my credentials were incorrect" do
+        user = User.create!(name: "Sam", address: "1331 17th St.", city: "Denver", state: "CO", zip: 80202, user_name: "iam@gmail.com", password: "test")
+
+        visit login_path
+
+        fill_in "User Name", with: "iam@gmail.com"
+        fill_in "Password", with: "fail"
+
+        click_button "Login"
+
+        expect(current_path).to eq(login_path)
+        expect(page).to have_content("Incorrect user name or password")
+      end
+    end
   end
 end
