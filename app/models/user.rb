@@ -6,5 +6,7 @@ class User < ApplicationRecord
                         :zip,
                         :password
 
-  validates_uniqueness_of :user_name
+  validates :user_name, uniqueness: true, presence: true
+
+  has_secure_password
 end

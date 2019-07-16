@@ -3,6 +3,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def login
+  end
+
   def create
     @user = User.create(user_params)
     if @user.save
