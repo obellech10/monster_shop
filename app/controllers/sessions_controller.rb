@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
       flash[:success] = "#{user.name} is logged in."
       redirect_to profile_path
     else
+      flash[:error] = "Incorrect user name or password"
       redirect_to login_path
     end
   end
