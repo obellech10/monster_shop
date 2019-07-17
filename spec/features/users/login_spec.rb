@@ -84,6 +84,7 @@ RSpec.describe "User can Login", type: :feature do
 
         expect(current_path).to eq(home_path)
         expect(page).to have_content("Cart: 0")
+        expect(page).to have_content("#{user.name} is now logged out!")
       end
     end
 
@@ -109,6 +110,7 @@ RSpec.describe "User can Login", type: :feature do
 
         expect(current_path).to eq(home_path)
         expect(page).to have_content("Cart: 0")
+        expect(page).to have_content("#{merchant.name} is now logged out!")
       end
     end
 
@@ -126,6 +128,7 @@ RSpec.describe "User can Login", type: :feature do
         click_link 'Logout'
 
         expect(current_path).to eq(home_path)
+        expect(page).to have_content("#{admin.name} is now logged out!")
       end
     end
 
