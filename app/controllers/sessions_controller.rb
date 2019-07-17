@@ -1,7 +1,15 @@
 class SessionsController < ApplicationController
   def create
     user = User.find_by(user_name: params[:user_name])
-    if user && user.authenticate(params[:password])
+    if user.admin? && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      flash[:success] = "#{user.name} is logged in."
+      redirect_to "/admin"
+    elsif user.merchant? && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      flash[:success] = "#{user.name} is logged in."
+      redirect_to "/merchant"
+    elsif user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "#{user.name} is logged in."
       redirect_to profile_path
