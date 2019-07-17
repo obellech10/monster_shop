@@ -8,5 +8,7 @@ class User < ApplicationRecord
 
   validates :user_name, uniqueness: true, presence: true
 
+  enum role: ["default", "admin", "merchant"]
+
   has_secure_password
 end
