@@ -18,10 +18,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    if !current_user.nil? && current_user.default? && !current_user.merchant?
-      render :show
-    else
+    unless current_user && current_user.default?
       render file: "/public/404", status: 404
+    else
+      render :show
     end
   end
 
