@@ -25,6 +25,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def logout
+    session.delete(:cart)
+    flash[:success] = "#{current_user.name} is now logged out!"
+    session[:user_id] = nil
+    redirect_to home_path
+  end
+
   private
 
   def user_params

@@ -22,7 +22,7 @@
         <%= link_to 'Merchants', '/merchants' %><br>
         <%= link_to 'Items', '/items' %><br>
         <%= link_to "Cart: #{cart.count}", cart_path %><br>
-        <%= link_to "Logout", nil %>
+        <%= link_to "Logout", logout_path, method: :delete %>
         <%= link_to "Profile", profile_path %>
         <p><%="Logged in as #{current_user.name}." %></p>
       <% elsif current_user.merchant? %>
@@ -30,7 +30,7 @@
         <%= link_to 'Merchants', '/merchants' %><br>
         <%= link_to 'Items', '/items' %><br>
         <%= link_to "Cart: #{cart.count}", cart_path %><br>
-        <%= link_to "Logout", nil %>
+        <%= link_to "Logout", logout_path, method: :delete %>
         <%= link_to "Dashboard", merchant_dashboard_path %>
         <p><%="Logged in as #{current_user.name}." %></p>
       <% else current_user.admin? %>
@@ -38,7 +38,7 @@
         <%= link_to 'Merchants', '/merchants' %><br>
         <%= link_to 'Users', '/admin/users' %><br>
         <%= link_to 'Items', '/items' %><br>
-        <%= link_to "Logout", nil %>
+        <%= link_to "Logout", logout_path, method: :delete %>
         <%= link_to "Dashboard", admin_dashboard_path %>
         <p><%="Logged in as #{current_user.name}." %></p>
       <% end%>
