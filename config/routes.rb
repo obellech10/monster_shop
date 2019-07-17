@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#show', as: :profile
   get '/login', to: 'users#login', as: :login
 
+  delete '/logout', to: 'users#logout', as: :logout
+
   post '/login', to: 'sessions#create'
 
   get '/admin', to: 'admin#show', as: :admin_dashboard

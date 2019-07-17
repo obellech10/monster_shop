@@ -18,6 +18,18 @@ class UsersController < ApplicationController
   end
 
   def show
+    if !current_user.nil? && current_user.default? && !current_user.merchant?
+      render :show
+    else
+      render file: "/public/404", status: 404
+    end
+  end
+
+  def logout
+    session.delete(:cart)
+    flash[:success] = "#{current_user.name} is now logged out!"
+    session[:user_id] = nil
+    redirect_to home_path
   end
 
   private
