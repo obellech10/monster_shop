@@ -4,6 +4,16 @@ class UsersController < ApplicationController
   end
 
   def login
+    if current_admin?
+      redirect_to admin_dashboard_path
+      flash[:success] = "#{current_user.name} is logged in."
+    elsif current_merchant?
+      redirect_to merchant_dashboard_path
+      flash[:success] = "#{current_user.name} is logged in."
+    elsif current_user
+      redirect_to profile_path
+      flash[:success] = "#{current_user.name} is logged in."
+    end
   end
 
   def create
