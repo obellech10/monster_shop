@@ -44,6 +44,7 @@ RSpec.describe 'Item Index Page' do
         expect(page).to have_link(@hippo.name)
         expect(page).to have_content(@hippo.description)
         expect(page).to have_content("Price: #{number_to_currency(@hippo.price)}")
+        expect(page).to have_content("Inventory: #{@hippo.inventory}")
         expect(page).to have_content("Sold by: #{@brian.name}")
         expect(page).to have_css("img[src*='#{@hippo.image}']")
         expect(page).to have_link(@brian.name)
