@@ -10,12 +10,22 @@
 
   <body>
     <nav>
-      <%= link_to 'Home', '/' %><br>
-      <%= link_to 'Merchants', '/merchants' %><br>
-      <%= link_to 'Items', '/items' %><br>
-      <%= link_to "Cart: #{cart.count}", cart_path %><br>
-      <%= link_to "Login", login_path %><br>
-      <%= link_to "Register", register_path %>
+      <% if current_user.nil? %>
+        <%= link_to 'Home', '/' %><br>
+        <%= link_to 'Merchants', '/merchants' %><br>
+        <%= link_to 'Items', '/items' %><br>
+        <%= link_to "Cart: #{cart.count}", cart_path %><br>
+        <%= link_to "Login", login_path %><br>
+        <%= link_to "Register", register_path %>
+      <% else current_user.default? %>
+        <%= link_to 'Home', '/' %><br>
+        <%= link_to 'Merchants', '/merchants' %><br>
+        <%= link_to 'Items', '/items' %><br>
+        <%= link_to "Cart: #{cart.count}", cart_path %><br>
+        <%= link_to "Logout", nil %>
+        <%= link_to "Profile", profile_path %>
+        <p><%="Logged in as #{current_user.name}." %></p>
+      <% end%>
     </nav>
     <% flash.each do |type, message| %>
     <p><%= message %></p>
