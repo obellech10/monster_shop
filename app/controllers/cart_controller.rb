@@ -1,4 +1,5 @@
 class CartController < ApplicationController
+
   def add_item
     item = Item.find(params[:item_id])
     session[:cart] ||= {}
@@ -13,7 +14,7 @@ class CartController < ApplicationController
   end
 
   def show
-    if current_user.nil? || !current_user.merchant?
+    if current_user.nil? || current_user.default?
       render :show
     else
       render file: "/public/404", status: 404
