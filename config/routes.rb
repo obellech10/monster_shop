@@ -27,4 +27,7 @@ Rails.application.routes.draw do
   get '/login', to: 'users#login', as: :login
 
   post '/login', to: 'sessions#create'
+
+  get '/admin', to: 'admin#show', as: :admin_dashboard
+  get '/merchant', to: 'merchant#show', as: :merchant_dashboard
 end
