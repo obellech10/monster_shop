@@ -96,4 +96,27 @@ RSpec.describe 'Site Navigation' do
       end
     end
   end
+# - a link to see all users ("/admin/users")
+  describe "As an Admin user" do
+    it "I see the same links as a visitor plus a link to my admin dashboard, a link to logout, and a link to see all users" do
+      user = User.create!(name: "Sam", address: "1331 17th St.", city: "Denver", state: "CO", zip: 80202, user_name: "iam@gmail.com", password: "test", role: 1)
+      visit login_path
+
+      fill_in "User Name", with: "iam@gmail.com"
+      fill_in "Password", with: "test"
+
+      click_button "Login"
+      visit '/'
+
+      within 'nav' do
+        expect(page).to have_link('Logout')
+        expect(page).to have_link('Dashboard')
+        expect(page).to have_link('Users')
+        expect(page).to_not have_link('Cart')
+        expect(page).to_not have_link('Login')
+        expect(page).to_not have_link('Register')
+        expect(page).to have_content("Logged in as #{user.name}.")
+      end
+    end
+  end
 end
