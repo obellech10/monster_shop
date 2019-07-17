@@ -35,7 +35,6 @@ RSpec.describe 'New Merchant Item' do
       expect(page).to have_link(name)
       expect(page).to have_content(description)
       expect(page).to have_content("Price: #{number_to_currency(price)}")
-      expect(page).to have_content("Active")
       expect(page).to have_content("Inventory: #{inventory}")
     end
 
