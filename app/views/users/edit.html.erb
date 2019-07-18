@@ -1,0 +1,23 @@
+<h1>Edit Profile</h1>
+
+<%= form_for @user, url: update_profile_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+
+  <%= f.label :city %>
+  <%= f.text_field :city %>
+
+  <%= f.label :state %>
+  <%= f.text_field :state %>
+
+  <%= f.label :zip %>
+  <%= f.number_field :zip %>
+
+  <%= f.label :user_name, "User Name" %>
+  <%= f.text_field :user_name %>
+
+  <%= f.submit "Update Profile" %>
+<% end %>
