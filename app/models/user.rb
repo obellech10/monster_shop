@@ -3,8 +3,7 @@ class User < ApplicationRecord
                         :address,
                         :city,
                         :state,
-                        :zip,
-                        :password
+                        :zip
 
   validates :user_name, uniqueness: true, presence: true
 
