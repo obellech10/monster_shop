@@ -35,6 +35,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    @user.update(user_params)
+    flash[:success] = "User profile has been updated!"
+    redirect_to profile_path
+  end
+
   def logout
     session.delete(:cart)
     flash[:success] = "#{current_user.name} is now logged out!"
