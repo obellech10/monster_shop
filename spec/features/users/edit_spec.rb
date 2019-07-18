@@ -35,5 +35,25 @@ RSpec.describe 'Edit User Profile' do
       expect(page).to have_content(@user.zip)
       expect(page).to have_content(@user.user_name)
     end
+
+    it "When editing email, it must be a unique email" do
+      diane = User.create!(name: "Diane", address: "1331 Main St.", city: "Denver", state: "CO", zip: 80202, user_name: "tom@gmail.com", password: "test", role: 0)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(diane)
+
+      visit profile_path
+
+      expect(page).to have_link('Edit Profile')
+
+      click_link 'Edit Profile'
+
+      expect(current_path).to eq(edit_profile_path)
+
+      fill_in "User Name", with: "iam@gmail.com"
+
+      click_button 'Update Profile'
+
+      expect(page).to have_content("Edit Profile")
+      expect(page).to have_content('That email is already in use, please enter valid email')
+    end
   end
 end
