@@ -39,6 +39,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def edit_password
+    @user = current_user
+  end
+
   def update
     @user = current_user
     if @user.update(update_params)
@@ -48,6 +52,13 @@ class UsersController < ApplicationController
       flash[:error] = "That email is already in use, please enter valid email"
       render :edit
     end
+  end
+
+  def update_password
+    @user = current_user
+    @user.update(update_params)
+    flash[:success] = "Your password has been updated."
+    redirect_to profile_path
   end
 
   def logout

@@ -36,6 +36,22 @@ RSpec.describe 'Edit User Profile' do
       expect(page).to have_content(@user.user_name)
     end
 
+    it "When I visit my profile page, I see a link to edit my password" do
+      visit profile_path
+
+      click_link "Change Password"
+
+      expect(current_path).to eq(edit_password_path)
+
+      fill_in "New Password", with: "password"
+      fill_in "Confirm New Password", with: "password"
+
+      click_button "Update Password"
+
+      expect(current_path).to eq(profile_path)
+      expect(page).to have_content("Your password has been updated.")
+    end
+
     it "When editing email, it must be a unique email" do
       diane = User.create!(name: "Diane", address: "1331 Main St.", city: "Denver", state: "CO", zip: 80202, user_name: "tom@gmail.com", password: "test", role: 0)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(diane)
