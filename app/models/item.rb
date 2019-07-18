@@ -18,4 +18,17 @@ class Item < ApplicationRecord
     reviews.average(:rating)
   end
 
+  def self.bottom_five
+    OrderItem.joins(:item)
+             .order(:quantity)
+             .limit(5)
+             .pluck("items.name", :quantity)
+  end
+
+  def self.top_five
+    OrderItem.joins(:item)
+             .order(quantity: :desc)
+             .limit(5)
+             .pluck("items.name", :quantity)
+  end
 end

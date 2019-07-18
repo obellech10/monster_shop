@@ -6,6 +6,8 @@ class ItemsController < ApplicationController
     else
       @items = Item.all
     end
+    @top_five = Item.top_five
+    @bottom_five = Item.bottom_five
   end
 
   def show
@@ -50,6 +52,8 @@ class ItemsController < ApplicationController
     end
     redirect_to '/items'
   end
+
+
 
   private
 
