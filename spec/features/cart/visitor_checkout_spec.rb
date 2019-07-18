@@ -14,6 +14,7 @@ RSpec.describe 'Cart Show Page' do
       it "I see information telling me I must register or log in to finish the checkout process" do
         visit item_path(@ogre)
         click_button 'Add to Cart'
+        
         visit item_path(@giant)
         click_button 'Add to Cart'
 
