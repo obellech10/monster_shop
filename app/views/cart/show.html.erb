@@ -1,4 +1,9 @@
 <h2>My Cart</h2>
+
+<% if !current_user && cart.items.any? %>
+  <p>You must <%= link_to "register", register_path %> or <%= link_to "login", login_path %> to finish the checkout process.</p>
+<% end %>
+
 <% if cart.items.empty? %>
   <p>Your Cart is Empty!</p>
 <% else %>
@@ -16,6 +21,9 @@
       <%= button_to 'Remove', "/cart/#{item.id}", method: :delete %>
     </section>
   <% end %>
-  <%= button_to 'Check Out', new_order_path, method: :get %>
+
+  <% unless !current_user %>
+    <%= button_to 'Check Out', new_order_path, method: :get %>
+  <% end %>
   <%= button_to 'Empty Cart', '/cart', method: :delete %>
 <% end %>
