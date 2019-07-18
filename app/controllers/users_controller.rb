@@ -41,9 +41,13 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update(user_params)
-    flash[:success] = "User profile has been updated!"
-    redirect_to profile_path
+    if @user.update(update_params)
+      flash[:success] = "User profile has been updated!"
+      redirect_to profile_path
+    else
+      flash[:error] = "That email is already in use, please enter valid email"
+      render :edit
+    end
   end
 
   def logout
@@ -57,5 +61,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.permit(:name, :address, :city, :state, :zip, :user_name, :password)
+  end
+
+  def update_params
+    params.require(:user).permit(:name, :address, :city, :state, :zip, :user_name, :password)
   end
 end
