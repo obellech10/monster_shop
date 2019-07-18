@@ -18,18 +18,17 @@ class Item < ApplicationRecord
     reviews.average(:rating)
   end
 
-  def bottom_five_quantity
-    b_five_quant = OrderItem.all.order(:quantity).select(:quantity).limit(5).pluck(:quantity).flatten
-    bottom_five = OrderItem.all.order(:quantity).select(:item_id).limit(5).pluck(:item_id)
-    b_five_names = Item.select(:name).where(id: bottom_five)
-    Hash[b_five_names.zip(b_five_quant.map {|i| i.include?(',') ? (i.split /, /) : i})]
+  def self.bottom_five
+    OrderItem.joins(:item)
+             .order(:quantity)
+             .limit(5)
+             .pluck("items.name", :quantity)
   end
 
-  def top_five_quanitiy
-    t_five_quant = OrderItem.all.order(:quantity).reverse_order.select(:quantity).limit(5).pluck(:quantity).flatten
-    top_five = OrderItem.all.order(:quantity).reverse.order.select(:item_id).limit(5).pluck(:item_id)
-    t_five_names = Item.select(:name).where(id: top_five)
-    Hash[t_five_names.zip(t_five_quant.map {|i| i.include?(',') ? (i.split /, /) : i})]
+  def self.top_five
+    OrderItem.joins(:item)
+             .order(quantity: :desc)
+             .limit(5)
+             .pluck("items.name", :quantity)
   end
-
 end
