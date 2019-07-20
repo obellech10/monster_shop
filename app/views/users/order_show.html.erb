@@ -1,0 +1,20 @@
+<h1>Your Order</h1>
+
+  <p>Order ID: <%= @order.id %></p>
+  <p>Order Created: <%= @order.created_at %></p>
+  <p>Order Status: <%= @order.status %></p>
+  <p>Order Last Updated: <%= @order.updated_at %></p>
+  <p>Order Quantity: <%= @order.total_quantity %> </p>
+  <p>Grand Total: <%= @order.grand_total %></p>
+
+<% @order.order_items.each do |order_item| %>
+  <section id='item-<%= order_item.item_id%>'>
+    <h2><%= link_to order_item.item.name, "/items/#{order_item.item_id}" %></h2>
+    <%= image_tag order_item.item.image %>
+    <p>Description: <%= order_item.item.description %></p>
+    <p>Price: <%= number_to_currency(order_item.price) %></p>
+    <p>Quantity: <%= order_item.quantity %></p>
+    <p>Subtotal: <%= number_to_currency(order_item.subtotal) %></p>
+    <p>Sold by: <%= link_to order_item.item.merchant.name, "/merchants/#{order_item.item.merchant_id}" %></p>
+  </section>
+<% end %>
