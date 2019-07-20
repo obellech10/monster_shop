@@ -31,9 +31,20 @@ RSpec.describe "Admin User Index", type: :feature do
       end
     end
 
-    it "When I click the 'users' link in the nav I see all users in the system" do
+    it "the 'Users' link in the nav is only visible to admins" do
       user = User.create!(name: "Jack", address: "1331 Main St.", city: "Denver", state: "CO", zip: 80202, user_name: "jack@gmail.com", password: "test", role: 0)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit home_path
+
+      expect(page).to_not have_link('Users')
+    end
+  end
+
+  describe 'As a merchant admin' do
+    it "the 'Users' link does NOT appear in the nav" do
+      merchant_admin = User.create!(name: "Jack", address: "1331 Main St.", city: "Denver", state: "CO", zip: 80202, user_name: "jack@gmail.com", password: "test", role: 2)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant_admin)
 
       visit home_path
 
