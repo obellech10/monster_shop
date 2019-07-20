@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def index
+    @order = current_user.orders
+  end
+
   def register
     @user = User.new
   end

@@ -1,0 +1,22 @@
+<section class = 'shipping-address'>
+  <h3><%= current_user.name %></h3>
+  <p><%= current_user.address %></p>
+  <p><%= current_user.city %> <%= current_user.state %> <%= current_user.zip %></p>
+</section>
+
+
+<% current_user.orders.each do |order|%>
+  <h3>Total: <%= number_to_currency(order.grand_total) %></h3>
+  <p>Order Created: <%= order.created_at %></p>
+  <p>Order Status: <%= order.status %></p>
+
+  <% order.order_items.each do |order_item| %>
+    <section id='item-<%= order_item.item_id%>'>
+      <h2><%= link_to order_item.item.name, "/items/#{order_item.item_id}" %></h2>
+      <p>Price: <%= number_to_currency(order_item.price) %></p>
+      <p>Quantity: <%= order_item.quantity %></p>
+      <p>Subtotal: <%= number_to_currency(order_item.subtotal) %></p>
+      <p>Sold by: <%= link_to order_item.item.merchant.name, "/merchants/#{order_item.item.merchant_id}" %></p>
+    </section>
+  <% end %>
+<% end %>
