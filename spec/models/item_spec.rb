@@ -41,11 +41,17 @@ RSpec.describe Item do
       @elephant = @megan.items.create!(name: 'elephant', description: "I'm a elephant!", price: 40, image: 'https://images.pexels.com/photos/39363/gift-made-package-loop-39363.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', active: true, inventory: 10 )
       @salmon = @megan.items.create!(name: 'salmon', description: "I'm a salmon!", price: 35, image: 'https://images.pexels.com/photos/39363/gift-made-package-loop-39363.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', active: true, inventory: 10 )
 
-      @order_1 = Order.create!(name: 'Megan A', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
-      @order_2 = Order.create!(name: 'Julie S', address: '123 Tree St', city: 'Atlanta', state: 'GA', zip: 12345)
-      @order_3 = Order.create!(name: 'Tay D', address: '123 Elk St', city: 'Miami', state: 'FL', zip: 83338)
-      @order_4 = Order.create!(name: 'Molly L', address: '123 River St', city: 'Charlotte', state: 'NC', zip: 45618)
-      @order_5 = Order.create!(name: 'Joe W', address: '123 Sea St', city: 'Boston', state: 'MA', zip: 45678)
+      @user_1 = User.create!(name: "Megan", address: "1331 Main St.", city: "Denver", state: "CO", zip: 80202, user_name: "diane@gmail.com", password: "test", role: 0)
+      @user_2 = User.create!(name: "Julie", address: "1331 Main St.", city: "Denver", state: "CO", zip: 80202, user_name: "julie@gmail.com", password: "test", role: 0)
+      @user_3 = User.create!(name: "Tay D", address: "1331 Main St.", city: "Denver", state: "CO", zip: 80202, user_name: "tayd@gmail.com", password: "test", role: 0)
+      @user_4 = User.create!(name: "Molly L", address: "1331 Main St.", city: "Denver", state: "CO", zip: 80202, user_name: "mollyl@gmail.com", password: "test", role: 0)
+      @user_5 = User.create!(name: "Joe", address: "1331 Main St.", city: "Denver", state: "CO", zip: 80202, user_name: "joe@gmail.com", password: "test", role: 0)
+
+      @order_1 = @user_1.orders.create!(status: 0)
+      @order_2 = @user_2.orders.create!(status: 0)
+      @order_3 = @user_3.orders.create!(status: 0)
+      @order_4 = @user_4.orders.create!(status: 0)
+      @order_5 = @user_5.orders.create!(status: 0)
 
       @order_item_1 = @order_1.order_items.create!(item: @lamp, price: @lamp.price, quantity: 9)
       @order_item_2 = @order_1.order_items.create!(item: @plant, price: @plant.price, quantity: 9)
