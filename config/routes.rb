@@ -27,9 +27,12 @@ Rails.application.routes.draw do
   patch '/profile', to: 'users#update', as: :update_profile
   get '/profile', to: 'users#show', as: :profile
 
+  get '/profile/orders', to: 'users#index'
+  post '/profile/orders', to: 'orders#create'
+
   get '/profile/password/edit', to: 'users#edit_password', as: :edit_password
   patch '/profile/password', to: 'users#update_password', as: :update_password
-  
+
   get '/login', to: 'users#login', as: :login
   delete '/logout', to: 'users#logout', as: :logout
 
