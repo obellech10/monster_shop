@@ -1,0 +1,10 @@
+<h1>Admin User Index</h1>
+
+
+<% @users.each do |user| %>
+  <section id='user-<%= user.id %>'>
+    <h3><%= link_to user.name, admin_user_path(user.id)  %></h3>
+    <p><%= user.created_at %></p>
+    <p><%= user.role %></p>
+  </section>
+<% end %>
