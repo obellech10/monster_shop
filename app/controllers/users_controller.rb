@@ -73,6 +73,10 @@ class UsersController < ApplicationController
     redirect_to home_path
   end
 
+  def order_show
+    @order = current_user.orders.find(params[:id])
+  end
+
   private
 
   def user_params

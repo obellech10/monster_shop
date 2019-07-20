@@ -63,7 +63,7 @@ RSpec.describe 'Create Order' do
 
       new_order = Order.last
 
-      expect(current_path).to eq("/profile/orders")
+      expect(current_path).to eq(profile_orders_path)
       expect(page).to have_content('Cart: 0')
 
       within '.shipping-address' do
@@ -72,23 +72,6 @@ RSpec.describe 'Create Order' do
       end
       expect(page).to have_content("Order Created: #{new_order.created_at}")
       expect(page).to have_content("Total: #{number_to_currency((@ogre.price * 1) + (@hippo.price * 2))}")
-      within "#item-#{@ogre.id}" do
-        expect(page).to have_link(@ogre.name)
-        expect(page).to have_content("Price: #{number_to_currency(@ogre.price)}")
-        expect(page).to have_content("Quantity: 1")
-        expect(page).to have_content("Subtotal: #{number_to_currency(@ogre.price * 1)}")
-        expect(page).to have_content("Sold by: #{@megan.name}")
-        expect(page).to have_link(@megan.name)
-      end
-
-      within "#item-#{@hippo.id}" do
-        expect(page).to have_link(@hippo.name)
-        expect(page).to have_content("Price: #{number_to_currency(@hippo.price)}")
-        expect(page).to have_content("Quantity: 2")
-        expect(page).to have_content("Subtotal: #{number_to_currency(@hippo.price * 2)}")
-        expect(page).to have_content("Sold by: #{@brian.name}")
-        expect(page).to have_link(@brian.name)
-      end
     end
   end
 end

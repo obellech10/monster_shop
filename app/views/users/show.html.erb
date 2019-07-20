@@ -7,4 +7,6 @@
 <p><%= link_to "Edit Profile", edit_profile_path %></p>
 <p><%= link_to "Change Password", edit_password_path %></p>
 
+<% if current_user.orders.any? %>
 <p><%= link_to "My Orders", '/profile/orders' %></p>
+<% end %>
