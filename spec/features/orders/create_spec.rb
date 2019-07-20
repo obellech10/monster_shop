@@ -61,7 +61,7 @@ RSpec.describe 'Create Order' do
       visit new_order_path
       click_button 'Create Order'
 
-      new_order = @user.orders.create!(status: 0)
+      new_order = Order.last
 
       expect(current_path).to eq("/profile/orders")
       expect(page).to have_content('Cart: 0')
