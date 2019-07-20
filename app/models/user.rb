@@ -9,5 +9,7 @@ class User < ApplicationRecord
 
   enum role: ["default", "admin", "merchant"]
 
+  has_many :orders
+
   has_secure_password
 end
