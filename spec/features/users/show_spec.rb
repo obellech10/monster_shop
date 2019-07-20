@@ -23,6 +23,7 @@ RSpec.describe "User Profile Show Page", type: :feature do
       expect(page).to have_content(user.zip)
       expect(page).to have_content(user.user_name)
       expect(page).to have_link("Edit Profile")
+      expect(page).to have_link("My Orders")
     end
   end
 end
