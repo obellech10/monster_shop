@@ -22,20 +22,10 @@ ActiveRecord::Schema.define(version: 20190719223016) do
     t.integer "inventory"
     t.string "image"
     t.boolean "active", default: true
-    t.bigint "merchant_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["merchant_id"], name: "index_items_on_merchant_id"
-  end
-
-  create_table "merchants", force: :cascade do |t|
-    t.string "name"
-    t.string "address"
-    t.string "city"
-    t.string "state"
-    t.integer "zip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -80,7 +70,7 @@ ActiveRecord::Schema.define(version: 20190719223016) do
     t.integer "role", default: 0
   end
 
-  add_foreign_key "items", "merchants"
+  add_foreign_key "items", "users"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"

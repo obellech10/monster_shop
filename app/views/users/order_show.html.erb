@@ -15,6 +15,6 @@
     <p>Price: <%= number_to_currency(order_item.price) %></p>
     <p>Quantity: <%= order_item.quantity %></p>
     <p>Subtotal: <%= number_to_currency(order_item.subtotal) %></p>
-    <p>Sold by: <%= link_to order_item.item.merchant.name, "/merchants/#{order_item.item.merchant_id}" %></p>
+    <p>Sold by: <%= link_to order_item.item.user.name, "/merchants/#{order_item.item.user_id}" %></p>
   </section>
 <% end %>

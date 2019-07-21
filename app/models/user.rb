@@ -11,5 +11,29 @@ class User < ApplicationRecord
 
   has_many :orders
 
+  has_many :items, dependent: :destroy
+  has_many :order_items, through: :items
+
   has_secure_password
+
+  def item_count
+    items.count
+  end
+
+  def average_item_price
+    items.average(:price)
+  end
+
+  def distinct_cities
+    order_items.joins('JOIN orders ON order_items.order_id = orders.id JOIN users on orders.user_id = users.id')
+               .order('city_state')
+               .distinct
+               .pluck("CONCAT_WS(', ', users.city, users.state) AS city_state")
+  end
+
+  def specific_orders_merchant
+    
+
+  end
+
 end

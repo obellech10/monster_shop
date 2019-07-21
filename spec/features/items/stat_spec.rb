@@ -3,8 +3,8 @@ include ActionView::Helpers::NumberHelper
 
 RSpec.describe 'Item Index Page' do
   before(:each) do
-    @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
-    @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
+    @megan = User.create!(name: 'MegansMarmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, user_name: "iamgmail.com", password: "test", role: 2)
+    @brian = User.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218, user_name: "ian@gmail.com", password: "test", role: 2)
 
     @lamp = @megan.items.create!(name: 'Lamp', description: "I'm a Lamp!", price: 200, image: 'https://images.pexels.com/photos/39363/gift-made-package-loop-39363.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', active: true, inventory: 10 )
     @plant = @brian.items.create!(name: 'Plant', description: "I'm a Plant!", price: 100, image: 'https://images.pexels.com/photos/39363/gift-made-package-loop-39363.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500', active: true, inventory: 10 )

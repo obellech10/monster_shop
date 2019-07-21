@@ -40,5 +40,10 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
 
   get '/admin', to: 'admin#show', as: :admin_dashboard
-  get '/merchant', to: 'merchant#show', as: :merchant_dashboard
+  get '/users', to: 'admin/users#index', as: :admin_users
+
+  get '/merchant', to: 'merchant/dashboard#show', as: :merchant_dashboard
+  get '/merchant/orders/:id', to: 'merchant/order#order_show', as: :merchant_order_show
+
+
 end

@@ -4,7 +4,7 @@ include ActionView::Helpers::NumberHelper
 RSpec.describe 'New Merchant Item' do
   describe 'As a Visitor' do
     before :each do
-      @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
+      @megan = User.create!(name: 'MegansMarmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, user_name: "iamgmail.com", password: "test", role: 2)
     end
 
     it 'I can click a link to a new item form page' do
