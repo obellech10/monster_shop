@@ -18,7 +18,8 @@ RSpec.describe "User can Login", type: :feature do
       end
 
       it "If I am a Merchant User, I am redirected to my merchant dashboard page" do
-        merchant = User.create!(name: "Sam", address: "1331 17th St.", city: "Denver", state: "CO", zip: 80202, user_name: "iam@gmail.com", password: "test", role: 2)
+        merchant = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
+        merchant_admin = User.create!(name: "Sam", address: "1331 17th St.", city: "Denver", state: "CO", zip: 80202, user_name: "iam@gmail.com", password: "test", role: 2, merchant_id: merchant.id)
 
         visit login_path
 
@@ -28,7 +29,7 @@ RSpec.describe "User can Login", type: :feature do
         click_button "Login"
 
         expect(current_path).to eq("/merchant")
-        expect(page).to have_content("#{merchant.name} is logged in.")
+        expect(page).to have_content("#{merchant_admin.name} is logged in.")
       end
 
       it "If I am a Admin User, I am redirected to my admin dashboard page" do
@@ -78,14 +79,15 @@ RSpec.describe "User can Login", type: :feature do
 
       context "As a Merchant" do
         it "When I visit the login path, I am redirected to my merchant dashboard page, and see a flash message that I am logged in" do
-          merchant = User.create!(name: "Sam", address: "1331 17th St.", city: "Denver", state: "CO", zip: 80202, user_name: "iam@gmail.com", password: "test", role: 2)
+          merchant = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
+          merchant_admin = User.create!(name: "Sam", address: "1331 17th St.", city: "Denver", state: "CO", zip: 80202, user_name: "iam@gmail.com", password: "test", role: 2, merchant_id: merchant.id)
 
-          allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+          allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant_admin)
 
           visit login_path
 
           expect(current_path).to eq(merchant_dashboard_path)
-          expect(page).to have_content("#{merchant.name} is logged in.")
+          expect(page).to have_content("#{merchant_admin.name} is logged in.")
         end
       end
 
