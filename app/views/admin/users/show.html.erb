@@ -1,0 +1,19 @@
+<h1><%= @user.name %>'s Profile</h1>
+<p><%= @user.address %></p>
+<p><%= @user.city %></p>
+<p><%= @user.state %></p>
+<p><%= @user.zip %></p>
+<p><%= @user.user_name %></p>
+
+<% if @user.orders.any? %>
+  <% @user.orders.each do |order| %>
+    <section id='order-<%= order.id %>'>
+      <p>Order ID: <%= order.id %></p>
+      <p>Order Created: <%= order.created_at %></p>
+      <p>Order Last Updated: <%= order.updated_at %></p>
+      <p>Order Status: <%= order.status %></p>
+      <p>Total Quantity: <%= order.total_quantity %></p>
+      <p>Grand Total: <%= order.grand_total %></p>
+    </section>
+  <% end %>
+<% end %>
