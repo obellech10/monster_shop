@@ -13,7 +13,6 @@ RSpec.describe "Users can view order show page", type: :feature do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
     @order_1 = Order.create!(user: @user, status: "pending")
-    # @order_2 = Order.create!(user: @user)
 
     @order_items_1 = @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2)
     @order_items_2 = @order_1.order_items.create!(item: @giant, price: @ogre.price, quantity: 3)
