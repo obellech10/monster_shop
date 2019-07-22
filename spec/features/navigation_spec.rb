@@ -78,7 +78,9 @@ RSpec.describe 'Site Navigation' do
   end
   describe "As a user who works for a merchant" do
     it "I see the same links as a visitor plus a link to my merchant dashboard and to logout" do
-      user = User.create!(name: "Sam", address: "1331 17th St.", city: "Denver", state: "CO", zip: 80202, user_name: "iam@gmail.com", password: "test", role: 2)
+      merchant = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
+      merchant_employee = User.create!(name: "Sam", address: "1331 17th St.", city: "Denver", state: "CO", zip: 80202, user_name: "iam@gmail.com", password: "test", role: 0, merchant_id: merchant.id)
+
       visit login_path
 
       fill_in "User Name", with: "iam@gmail.com"
@@ -92,7 +94,7 @@ RSpec.describe 'Site Navigation' do
         expect(page).to have_link('Dashboard')
         expect(page).to_not have_link('Login')
         expect(page).to_not have_link('Register')
-        expect(page).to have_content("Logged in as #{user.name}.")
+        expect(page).to have_content("Logged in as #{merchant_employee.name}.")
       end
     end
   end

@@ -15,16 +15,16 @@ class ApplicationController < ActionController::Base
     current_user && current_user.admin?
   end
 
-  def current_merchant?
-    current_user && current_user.merchant?
+  def current_merchant_admin?
+    current_user && current_user.merchant_admin?
   end
 
   def require_admin
     render file: 'public/404', status: 404 unless current_admin?
   end
 
-  def require_merchant
-    render file: 'public/404', status: 404 unless current_merchant?
+  def require_merchant_admin
+    render file: 'public/404', status: 404 unless current_merchant_admin?
   end
 
   def generate_flash(resource)

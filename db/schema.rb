@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 20190721134242) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
+    t.bigint "merchant_id"
+    t.index ["merchant_id"], name: "index_users_on_merchant_id"
   end
 
   add_foreign_key "items", "merchants"
@@ -86,4 +88,5 @@ ActiveRecord::Schema.define(version: 20190721134242) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "reviews", "items"
+  add_foreign_key "users", "merchants"
 end
