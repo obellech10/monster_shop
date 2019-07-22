@@ -4,3 +4,13 @@
   <p><%= @merchant.address %></p>
   <p><%= @merchant.city %> <%= @merchant.state %> <%= @merchant.zip %></p>
 </section>
+
+
+<% @pending_orders.each do |order| %>
+  <section id="order-<% order.id %>">
+    <%= order.id %>
+    <%= order.created_at.to_date %>
+    <%= order.total_quantity %>
+    <%= order.grand_total %>
+  </section>
+<% end %>
