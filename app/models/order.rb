@@ -15,4 +15,11 @@ class Order < ApplicationRecord
   def total_quantity
     order_items.sum(:quantity)
   end
+
+  def self.pending_merchant_orders(merchant)
+    self.joins(:items)
+        .where("items.merchant_id = ?", merchant.id)
+        .where(status: "pending")
+        .distinct
+  end
 end
