@@ -5,11 +5,11 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:success] = "#{user.name} is logged in."
       redirect_to "/admin"
-    elsif user.merchant? && user.authenticate(params[:password])
+    elsif user.merchant_admin? && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "#{user.name} is logged in."
       redirect_to "/merchant"
-    elsif user && user.authenticate(params[:password])
+    elsif user.default? && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "#{user.name} is logged in."
       redirect_to profile_path

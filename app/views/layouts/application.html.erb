@@ -24,8 +24,11 @@
         <%= link_to "Cart: #{cart.count}", cart_path %><br>
         <%= link_to "Logout", logout_path, method: :delete %>
         <%= link_to "Profile", profile_path %>
+          <% if current_user.merchant_id %>
+            <%= link_to "Dashboard", merchant_dashboard_path %>
+          <% end %>
         <p><%="Logged in as #{current_user.name}." %></p>
-      <% elsif current_user.merchant? %>
+      <% elsif current_user.merchant_admin? %>
         <%= link_to 'Home', '/' %><br>
         <%= link_to 'Merchants', '/merchants' %><br>
         <%= link_to 'Items', '/items' %><br>

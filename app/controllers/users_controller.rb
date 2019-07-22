@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if current_admin?
       redirect_to admin_dashboard_path
       flash[:success] = "#{current_user.name} is logged in."
-    elsif current_merchant?
+    elsif current_merchant_admin?
       redirect_to merchant_dashboard_path
       flash[:success] = "#{current_user.name} is logged in."
     elsif current_user
