@@ -7,6 +7,10 @@
   <p>Order Quantity: <%= @order.total_quantity %> </p>
   <p>Grand Total: <%= @order.grand_total %></p>
 
+  <% if @order.pending? %>
+    <p><%= button_to "Cancel Order", order_cancel_path(@order), method: :patch %></p>
+  <% end %>
+
 <% @order.order_items.each do |order_item| %>
   <section id='item-<%= order_item.item_id%>'>
     <h2><%= link_to order_item.item.name, "/items/#{order_item.item_id}" %></h2>
