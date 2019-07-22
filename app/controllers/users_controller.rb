@@ -77,6 +77,18 @@ class UsersController < ApplicationController
     @order = current_user.orders.find(params[:id])
   end
 
+  def order_cancel
+    order = current_user.orders.find(params[:id])
+    order.update(status: "cancelled")
+
+    order.order_items.each do |order_item|
+      order_item.cancel
+    end
+
+    flash[:success] = "Order #{order.id} has been cancelled."
+    redirect_to profile_orders_path
+  end
+
   private
 
   def user_params
