@@ -1,0 +1,10 @@
+<h1>Admin's Merchant Index</h1>
+
+<% @merchants.each do |merchant| %>
+  <section id='merchant-<%= merchant.id %>'>
+    <h2>Merchant: <%= merchant.name %></h2>
+    <p>Address: <%= merchant.address %>, <%= merchant.city %>, <%= merchant.state %> <%= merchant.zip %></p>
+    <p>Account Created: <%= merchant.created_at.to_date %></p>
+    <p>Enabled: <%= merchant.enabled %></p>
+  </section>
+<% end %>
