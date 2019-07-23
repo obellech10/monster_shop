@@ -41,5 +41,22 @@ RSpec.describe Order do
       expect(@order_1.total_quantity).to eq(5)
       expect(@order_2.total_quantity).to eq(2)
     end
+
+    it ".merchant_items" do
+      expect(@order_1.merchant_items(@megan).first).to eq(@ogre)
+      expect(@order_2.merchant_items(@brian).first).to eq(@hippo)
+    end
+
+    it ".total_value" do
+      expect(@order_1.total_value(@megan)).to eq(40.5)
+    end
+
+    it ".total_merchant_items" do
+      expect(@order_1.total_merchant_items(@megan)).to eq(2)
+    end
+
+    it ".user_address" do
+      expect(@order_1.user_address(@order_1)).to eq("1331 17th St. Denver CO 80202")
+    end
   end
 end
