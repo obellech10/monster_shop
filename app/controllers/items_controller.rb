@@ -53,8 +53,6 @@ class ItemsController < ApplicationController
     redirect_to '/items'
   end
 
-
-
   private
 
   def item_params
