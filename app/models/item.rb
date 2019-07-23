@@ -36,4 +36,16 @@ class Item < ApplicationRecord
     Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}").pluck(:quantity).first
   end
 
+  def item_status
+    Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}").pluck(:fulfilled).first
+  end
+
+  def item_status_message
+    if self.item_status == false
+      "This item has not yet been fulfilled."
+    else
+      "This item has already been fulfilled."
+    end
+  end
+
 end
