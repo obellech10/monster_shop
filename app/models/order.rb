@@ -17,6 +17,6 @@ class Order < ApplicationRecord
   end
 
   def self.sorted_orders
-    Order.order(:status)
+    self.order(:status)
   end
 end
