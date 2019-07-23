@@ -15,4 +15,15 @@ class Order < ApplicationRecord
   def total_quantity
     order_items.sum(:quantity)
   end
+
+  def total_merchant_items(merchant)
+    Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}").sum(:quantity)
+  end
+
+  def total_value(merchant)
+    red = Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}").pluck(:price).flatten
+    blue = Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}").pluck(:quantity).flatten
+    red.first * blue.first
+  end
+
 end
