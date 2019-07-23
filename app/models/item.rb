@@ -31,4 +31,9 @@ class Item < ApplicationRecord
              .limit(5)
              .pluck("items.name", :quantity)
   end
+
+  def item_quantity
+    Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}").pluck(:quantity).first
+  end
+
 end
