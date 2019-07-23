@@ -7,7 +7,8 @@ class Merchant < ApplicationRecord
                         :address,
                         :city,
                         :state,
-                        :zip
+                        :zip,
+                        :enabled
 
   def item_count
     items.count
