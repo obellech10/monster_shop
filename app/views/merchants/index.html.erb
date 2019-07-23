@@ -1,7 +1,7 @@
 <%= link_to 'New Merchant', '/merchants/new' %>
 <% @merchants.each do |merchant| %>
   <section id='merchant-<%= merchant.id %>'>
-    <% if current_merchant_admin? %>
+    <% if current_admin? %>
       <h2><%= link_to merchant.name, admin_merchant_path(merchant) %></h2>
     <% else %>
       <h2><%= link_to merchant.name, "/merchants/#{merchant.id}" %></h2>
@@ -9,7 +9,7 @@
 
     <h2><%= merchant.city %>, <%= merchant.state %></h2>
 
-    <% if current_merchant_admin? %>
+    <% if current_admin? %>
       <% if merchant.enabled? %>
         <%= button_to "Disable Merchant", admin_disable_merchant_path(merchant), method: :patch %>
       <% else %>
