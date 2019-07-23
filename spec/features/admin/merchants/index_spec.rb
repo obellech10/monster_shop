@@ -6,9 +6,9 @@ RSpec.describe "Admin Merchant Index Page", type: :feature do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
       @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
 
-      @merchant_admin = User.create!(name: "Sam", address: "1331 17th St.", city: "Denver", state: "CO", zip: 80202, user_name: "iam@gmail.com", password: "test", role: 2, merchant_id: @megan.id)
+      @admin = User.create!(name: "Sam", address: "1331 17th St.", city: "Denver", state: "CO", zip: 80202, user_name: "iam@gmail.com", password: "test", role: "admin")
 
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_admin)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     end
 
     describe "When I visit the merchant's index page at '/merchants'" do
