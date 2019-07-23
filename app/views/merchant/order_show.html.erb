@@ -6,5 +6,5 @@
 <p>Item Name: <%= link_to item.name, item_path(item) %></p>
 <img src="<%="#{item.image}"%>">
 <p>Price: <%= item.price %></p>
-<p>Quantity: <%= item.item_quantity %></p>
+<p>Quantity: <%= item.item_quantity(@order) %></p>
 <% end %>
