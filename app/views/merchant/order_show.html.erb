@@ -4,7 +4,7 @@
 <p>Items Purchased</p>
 <% @order.merchant_items(@merchant).each do |item| %>
 <p>Item Name: <%= link_to item.name, item_path(item) %></p>
-<%= link_to image_tag(item.image), item_path(item) %>
+<img src="<%="#{item.image}"%>">
 <p>Price: <%= item.price %></p>
 <p>Quantity: <%= item.item_quantity %></p>
 <% end %>
