@@ -26,11 +26,6 @@ class Order < ApplicationRecord
     red.first * blue.first
   end
 
-  def user(order)
-    red = Order.where("id = #{order.id}").select(:user_id)
-    User.where(id: red).pluck(:name).first
-  end
-
   def user_address(order)
     red = Order.where("id = #{order.id}").select(:user_id)
     blue= User.where(id: red).pluck(:address, :city, :state, :zip).flatten
