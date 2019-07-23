@@ -40,7 +40,7 @@ Rails.application.routes.draw do
 
   post '/login', to: 'sessions#create'
 
-  get '/admin', to: 'admin#show', as: :admin_dashboard
+  get '/admin/dashboard', to: 'admin#show', as: :admin_dashboard
   get '/merchant', to: 'merchant#show', as: :merchant_dashboard
 
   namespace :admin do
