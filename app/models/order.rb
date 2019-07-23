@@ -26,4 +26,19 @@ class Order < ApplicationRecord
     red.first * blue.first
   end
 
+  def user(order)
+    red = Order.where("id = #{order.id}").select(:user_id)
+    User.where(id: red).pluck(:name).first
+  end
+
+  def user_address(order)
+    red = Order.where("id = #{order.id}").select(:user_id)
+    blue= User.where(id: red).pluck(:address, :city, :state, :zip).flatten
+    "#{blue[0]} #{blue[1]} #{blue[2]} #{blue[3]}"
+  end
+
+  def merchant_items(merchant)
+    Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}")
+  end
+
 end
