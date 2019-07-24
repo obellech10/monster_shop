@@ -49,7 +49,7 @@ RSpec.describe 'Merchant Dashboard Order Show Page' do
 
     it "desired quantity for order exceeds available inventory" do
       @user_3 = User.create!(name: "Joe", address: "1331 Main St.", city: "Denver", state: "IA", zip: 80202, user_name: "joe1@gmail.com", password: "test", role: 0)
-      @order_2 = @user_3.orders.create!(status: 0)
+      @order_2 = @user_3.orders.create!(status: "pending")
       @order_2.order_items.create!(item: @ogre, price: @ogre.price, quantity: 10, fulfilled: false)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
@@ -57,6 +57,7 @@ RSpec.describe 'Merchant Dashboard Order Show Page' do
       visit profile_path
       click_link "Dashboard"
       click_link "#{@order_2.id}"
+
       expect(page).to_not have_link('Fulfill')
       expect(page).to have_content('The desired quantity of this order is too high to fulfill')
     end
