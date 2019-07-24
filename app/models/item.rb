@@ -32,8 +32,8 @@ class Item < ApplicationRecord
              .pluck("items.name", :quantity)
   end
 
-  def item_quantity
-    Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}").pluck(:quantity).first
+  def item_quantity(order)
+    Item.joins(:order_items).where("order_id = #{order.id}").where("merchant_id = #{merchant.id}").pluck(:quantity).first
   end
 
   def item_status
@@ -47,5 +47,4 @@ class Item < ApplicationRecord
       "This item has already been fulfilled."
     end
   end
-
 end

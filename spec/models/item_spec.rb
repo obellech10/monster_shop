@@ -74,6 +74,10 @@ RSpec.describe Item do
       it '.average_rating' do
         expect(@ogre.average_rating.round(2)).to eq(3.00)
       end
+
+      it '.item_quantity' do
+        expect(@lamp.item_quantity(@order_1)).to eq(9)
+      end
     end
 
     describe "class methods" do
