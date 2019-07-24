@@ -86,7 +86,7 @@ RSpec.describe Order do
     end
 
     it '.sorted_orders' do
-      sorted = [@order_3, @order_1, @order_4, @order_2]
+      sorted = [@order_1, @order_3, @order_4, @order_2]
       expect(Order.sorted_orders).to eq(sorted)
     end
   end
