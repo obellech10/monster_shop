@@ -12,9 +12,11 @@ class MerchantController < ApplicationController
   end
 
   def order_item_fulfillment
-    order_item = Order.find(params[:id]).order_items.first
-    order_item.fulfill
-    redirect_to merchant_dashboard_path
+    order_item = OrderItem.where(item_id: params[:item_id], order_id: params[:id]).first
+    item = order_item.item
+    item.update(inventory: item.inventory - order_item.quantity)
+    order_item.update(fulfilled: true)
+    redirect_to merchant_order_show_path(params[:id])
   end
 
 end
