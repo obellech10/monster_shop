@@ -9,13 +9,6 @@ class OrderItem < ApplicationRecord
     quantity * price
   end
 
-  def fulfill
-    if item.inventory >= self.quantity
-      item.inventory -= self.quantity
-      self.update(fulfilled: true)
-    end
-  end
-
   def cancel
     if self.fulfilled?
       self.update(fulfilled: false)
