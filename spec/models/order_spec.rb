@@ -24,8 +24,8 @@ RSpec.describe Order do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
-      @order_1 = Order.create!(user: @user)
-      @order_2 = Order.create!(user: @user)
+      @order_1 = Order.create!(user: @user, status: "pending")
+      @order_2 = Order.create!(user: @user, status: "pending")
 
       @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2)
       @order_1.order_items.create!(item: @hippo, price: @hippo.price, quantity: 3)
@@ -53,10 +53,18 @@ RSpec.describe Order do
 
     it ".total_merchant_items" do
       expect(@order_1.total_merchant_items(@megan)).to eq(2)
+      expect(@order_1.total_merchant_items(@brian)).to eq(3)
     end
 
     it ".user_address" do
       expect(@order_1.user_address(@order_1)).to eq("1331 17th St. Denver CO 80202")
+    end
+
+    it ".all_fulfilled?" do
+      expect(@order_1.all_fulfilled?).to eq(false)
+      
+      @order_1.order_items.update(fulfilled: true)
+      expect(@order_1.all_fulfilled?).to eq(true)
     end
   end
 
