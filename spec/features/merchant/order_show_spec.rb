@@ -1,10 +1,6 @@
 require 'rails_helper'
 include ActionView::Helpers::NumberHelper
 
-# - the name of the item, which is a link to my item's show page
-
-# - the quantity the user wants to purchase
-
 RSpec.describe 'Merchant Dashboard Order Show Page' do
   describe 'As a merchant, when I visit an order show page from my dashboard' do
     before :each do
