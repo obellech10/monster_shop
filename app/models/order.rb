@@ -39,5 +39,4 @@ class Order < ApplicationRecord
   def all_fulfilled?
     self.order_items.all? { |order_item| order_item.fulfilled == true }
   end
-
 end
