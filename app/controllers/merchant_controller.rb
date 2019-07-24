@@ -14,6 +14,7 @@ class MerchantController < ApplicationController
   def order_item_fulfillment
     order_item = Order.find(params[:id]).order_items.first
     order_item.fulfill
+    redirect_to merchant_dashboard_path
   end
 
 end
