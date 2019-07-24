@@ -41,7 +41,7 @@ class Item < ApplicationRecord
   end
 
   def item_status_message
-    if self.item_status == false
+    if self.item_status != true
       "This item has not yet been fulfilled."
     else
       "This item has already been fulfilled."
