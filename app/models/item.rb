@@ -5,9 +5,10 @@ class Item < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   validates_presence_of :name,
-                        :description,
-                        :price,
-                        :inventory
+                        :description
+
+  validates :inventory, numericality: {greater_than_or_equal_to: 0}
+  validates :price, numericality: {greater_than: 0}
 
   def sorted_reviews(limit = nil, order = :asc)
     reviews.order(rating: order).limit(limit)
