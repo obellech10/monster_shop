@@ -36,4 +36,8 @@ class Order < ApplicationRecord
     Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}")
   end
 
+  def all_fulfilled?
+    self.order_items.all? { |order_item| order_item.fulfilled == true }
+  end
+
 end
