@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
 
   get '/admin/dashboard', to: 'admin#show', as: :admin_dashboard
+  patch '/admin/dashboard', to: 'admin#ship_order', as: :ship_order
   get '/merchant', to: 'merchant#show', as: :merchant_dashboard
   get '/merchant/orders/:id', to: 'merchant#order_show', as: :merchant_order_show
   patch '/merchant/orders/:id', to: 'merchant#order_item_fulfillment', as: :order_item_fulfillment
