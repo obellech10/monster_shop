@@ -34,6 +34,9 @@ RSpec.describe 'New Merchant Item' do
         expect(current_path).to eq(dashboard_items_path)
         expect(page).to have_content("#{name} has been created")
         expect(page).to have_content(name)
+        expect(page).to have_content(description)
+        expect(page).to have_content(price)
+        expect(page).to have_content(inventory)
         expect(page).to have_content("true")
         expect(page).to have_css("img[src*='#{default_image}']")
       end
@@ -54,6 +57,29 @@ RSpec.describe 'New Merchant Item' do
       click_button 'Create Item'
 
       expect(page).to have_content("Item details can't be left blank")
+    end
+
+    it "I can't enter price or inventory less than zero" do
+      visit dashboard_items_path
+
+      click_link 'New Item'
+
+      expect(current_path).to eq(new_dashboard_item_path)
+
+      name = 'Ogre'
+      description = "I'm an Ogre!"
+      price = 0
+      default_image = "https://www.google.com/imgres?imgurl=http%3A%2F%2Fwww.stleos.uq.edu.au%2Fwp-content%2Fuploads%2F2016%2F08%2Fimage-placeholder-350x350.png&imgrefurl=http%3A%2F%2Fwww.stleos.uq.edu.au%2Flive-on-campus%2Faccommodation%2Fimage-placeholder%2F&docid=YPZY41tiqQXLcM&tbnid=8RNNVPLyHn5RyM%3A&vet=10ahUKEwiDt_GStszjAhVIU80KHS3HDHkQMwiKASgJMAk..i&w=350&h=350&bih=766&biw=1440&q=placeholder%20image&ved=0ahUKEwiDt_GStszjAhVIU80KHS3HDHkQMwiKASgJMAk&iact=mrc&uact=8"
+      inventory = -1
+
+      fill_in 'Name', with: name
+      fill_in 'Description', with: description
+      fill_in 'Price', with: price
+      # fill_in 'Image', with: image -- absence of image for testing
+      fill_in 'Inventory', with: inventory
+      click_button 'Create Item'
+
+      # expect(page).to have_content("Price can't be zero ")      
     end
   end
 end

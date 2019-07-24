@@ -7,6 +7,7 @@
     <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
     <p><%= item.description %></p>
     <p><%= item.active %></p>
+    <p><%= item.inventory %></p>
     <%= link_to image_tag(item.image), item_path(item) %>
     <p>Price: <%= number_to_currency(item.price) %></p>
       <% if item.orders == [] %>
