@@ -53,6 +53,7 @@ RSpec.describe Order do
 
     it ".total_merchant_items" do
       expect(@order_1.total_merchant_items(@megan)).to eq(2)
+      expect(@order_1.total_merchant_items(@brian)).to eq(3)
     end
 
     it ".user_address" do

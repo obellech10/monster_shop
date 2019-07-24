@@ -10,5 +10,4 @@ class MerchantController < ApplicationController
     @merchant = Merchant.find(current_user.merchant_id)
     @order = Order.find(params[:id])
   end
-
 end
