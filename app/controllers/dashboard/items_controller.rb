@@ -22,7 +22,7 @@ class Dashboard::ItemsController < ApplicationController
       flash[:success] = "#{@item.name} has been created"
       redirect_to dashboard_items_path
     else
-      flash[:error] = "Item details can't be left blank"
+      flash[:error] = @item.errors.full_messages.to_sentence
       render :new
     end
   end
