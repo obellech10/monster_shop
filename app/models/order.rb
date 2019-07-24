@@ -6,7 +6,7 @@ class Order < ApplicationRecord
 
   validates_presence_of :status
 
-  enum status: ["packaged", "pending", "shipped", "cancelled"]
+  enum status: ["pending", "packaged", "shipped", "cancelled"]
 
   def grand_total
     order_items.sum('price * quantity')
@@ -14,6 +14,10 @@ class Order < ApplicationRecord
 
   def total_quantity
     order_items.sum(:quantity)
+  end
+
+  def self.sorted_orders
+    self.order(:status)
   end
 
   def total_merchant_items(merchant)
@@ -38,9 +42,5 @@ class Order < ApplicationRecord
 
   def all_fulfilled?
     self.order_items.all? { |order_item| order_item.fulfilled == true }
-  end
-  
-  def self.sorted_orders
-    self.order(:status)
   end
 end
