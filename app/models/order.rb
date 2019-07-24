@@ -16,6 +16,26 @@ class Order < ApplicationRecord
     order_items.sum(:quantity)
   end
 
+  def total_merchant_items(merchant)
+    Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}").sum(:quantity)
+  end
+
+  def total_value(merchant)
+    red = Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}").pluck(:price).flatten
+    blue = Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}").pluck(:quantity).flatten
+    red.first * blue.first
+  end
+
+  def user_address(order)
+    red = Order.where("id = #{order.id}").select(:user_id)
+    blue= User.where(id: red).pluck(:address, :city, :state, :zip).flatten
+    "#{blue[0]} #{blue[1]} #{blue[2]} #{blue[3]}"
+  end
+
+  def merchant_items(merchant)
+    Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}")
+  end
+
   def self.sorted_orders
     self.order(:status)
   end
