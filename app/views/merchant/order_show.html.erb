@@ -3,12 +3,12 @@
 
 <p>Items Purchased</p>
 <% @order.merchant_items(@merchant).each do |item| %>
-<p>Item Name: <%= link_to item.name, item_path(item) %></p>
-<%= link_to image_tag(item.image), item_path(item) %>
-<p>Price: <%= item.price %></p>
-<p>Quantity: <%= item.item_quantity(@order) %></p>
-<p>Status: <%= item.item_status_message %></p>
-    <% if item.item_quantity(@order) != item.inventory && item.item_status != true %>
-     <%= button_to "Fulfill", order_item_fulfillment_path %>
+  <p>Item Name: <%= link_to item.name, item_path(item) %></p>
+  <%= link_to image_tag(item.image), item_path(item) %>
+  <p>Price: <%= item.price %></p>
+  <p>Quantity: <%= item.item_quantity(@order) %></p>
+  <p>Status: <%= item.item_status_message(@order) %></p>
+    <% if item.item_status(@order) == false %>
+    <%= link_to "Fulfill", order_item_fulfillment_path(item_id: item.id), method: :patch %>
     <% end %>
 <% end %>

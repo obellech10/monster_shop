@@ -45,12 +45,12 @@ RSpec.describe 'Merchant Dashboard Order Show Page' do
       expect(page).to have_content(@ogre.price)
       expect(page).to_not have_content(@giant.name)
 
-      expect(page).to have_button("Fulfill")
+      expect(page).to have_link("Fulfill")
       expect(@order_1.order_items.first.fulfilled?).to eq(false)
-      click_button "Fulfill"
+      click_on "Fulfill"
       expect(current_path).to eq(merchant_order_show_path(@order_1.id))
       expect(@order_1.order_items.first.fulfilled?).to eq(true)
-      expect(page).to_not have_button("Fulfill")
+      expect(page).to_not have_link("Fulfill")
     end
   end
 end
