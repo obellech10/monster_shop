@@ -40,12 +40,19 @@ Rails.application.routes.draw do
 
   post '/login', to: 'sessions#create'
 
-  get '/admin', to: 'admin#show', as: :admin_dashboard
+  get '/admin/dashboard', to: 'admin#show', as: :admin_dashboard
   get '/merchant', to: 'merchant#show', as: :merchant_dashboard
   get '/merchant/orders/:id', to: 'merchant#order_show', as: :merchant_order_show
   patch '/merchant/orders/:id', to: 'merchant#order_item_fulfillment', as: :order_item_fulfillment
 
+  namespace :dashboard do
+    resources :items, only: [:index, :destroy, :new, :create]
+  end
+
   namespace :admin do
     resources :users, only: [:show, :index]
+    resources :merchants, only: [:index, :show]
+    patch '/merchants/:id/disable', to: "merchants#disable", as: :disable_merchant
+    patch '/merchants/:id/enable', to: "merchants#enable", as: :enable_merchant
   end
 end

@@ -1,0 +1,20 @@
+<h1>Create New Item</h1>
+
+<%= form_for @item, url: dashboard_items_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+
+  <%= f.label :image %>
+  <%= f.text_field :image %>
+
+  <%= f.label :inventory %>
+  <%= f.text_field :inventory %>
+
+  <%= f.submit 'Create Item' %>
+<% end %>

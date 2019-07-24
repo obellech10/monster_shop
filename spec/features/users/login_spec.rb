@@ -42,7 +42,7 @@ RSpec.describe "User can Login", type: :feature do
 
         click_button "Login"
 
-        expect(current_path).to eq("/admin")
+        expect(current_path).to eq(admin_dashboard_path)
         expect(page).to have_content("#{admin.name} is logged in.")
       end
     end

@@ -6,7 +6,7 @@ class Order < ApplicationRecord
 
   validates_presence_of :status
 
-  enum status: ["pending", "packaged", "shipped", "cancelled"]
+  enum status: ["packaged", "pending", "shipped", "cancelled"]
 
   def grand_total
     order_items.sum('price * quantity')

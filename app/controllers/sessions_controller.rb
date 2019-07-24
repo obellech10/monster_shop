@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     if user.admin? && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "#{user.name} is logged in."
-      redirect_to "/admin"
+      redirect_to admin_dashboard_path
     elsif user.merchant_admin? && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "#{user.name} is logged in."
