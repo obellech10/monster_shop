@@ -9,12 +9,12 @@
 
     <h2><%= merchant.city %>, <%= merchant.state %></h2>
 
-    <% if current_admin? %>
-      <% if merchant.enabled? %>
-        <%= button_to "Disable Merchant", admin_disable_merchant_path(merchant), method: :patch %>
-      <% else %>
-        <%= button_to "Enable Merchant", admin_enable_merchant_path(merchant), method: :patch %>
-      <% end %>
+    <% if current_admin? && merchant.enabled? %>
+      <%= button_to "Disable Merchant", admin_disable_merchant_path(merchant), method: :patch %>
+    <% end %>
+
+    <% if current_merchant_admin? && !merchant.enabled? %>
+      <%= button_to "Enable Merchant", admin_enable_merchant_path(merchant), method: :patch %>
     <% end %>
   </section>
 <% end %>
