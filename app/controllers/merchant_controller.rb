@@ -16,7 +16,10 @@ class MerchantController < ApplicationController
     item = order_item.item
     item.update(inventory: item.inventory - order_item.quantity)
     order_item.update(fulfilled: true)
+    order = Order.find(order_item.order_id)
+    order.update(status: 1) if order.all_fulfilled?
     redirect_to merchant_order_show_path(params[:id])
   end
+
 
 end
