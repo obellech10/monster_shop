@@ -41,3 +41,5 @@ order_item_5 = order_3.order_items.create!(item: ogre, price: ogre.price, quanti
 order_item_6 = order_3.order_items.create!(item: hippo, price: hippo.price, quantity: 3)
 order_item_7 = order_4.order_items.create!(item: giant, price: giant.price, quantity: 4)
 order_item_8 = order_4.order_items.create!(item: lamp, price: lamp.price, quantity: 5)
+jack = User.create!(name: "Jack", address: "1331 Main St.", city: "Denver", state: "CO", zip: 80202, user_name: "jack@gmail.com", password: "test", role: 1)
+diane = User.create!(name: "Diane", address: "1331 17th St.", city: "Denver", state: "CO", zip: 80202, user_name: "diane@gmail.com", password: "test", role: 2)
