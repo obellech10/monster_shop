@@ -15,5 +15,4 @@ class MerchantController < ApplicationController
     order_item = Order.find(params[:id]).order_items.first
     order_item.fulfill
   end
-
 end

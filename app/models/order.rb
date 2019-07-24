@@ -6,7 +6,7 @@ class Order < ApplicationRecord
 
   validates_presence_of :status
 
-  enum status: ["pending", "packaged", "shipped", "cancelled"]
+  enum status: ["packaged", "pending", "shipped", "cancelled"]
 
   def grand_total
     order_items.sum('price * quantity')
@@ -36,4 +36,7 @@ class Order < ApplicationRecord
     Item.joins(:order_items).where("order_id = #{id}").where("merchant_id = #{merchant.id}")
   end
 
+  def self.sorted_orders
+    self.order(:status)
+  end
 end
