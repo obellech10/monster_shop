@@ -8,7 +8,10 @@
   <p>Price: <%= item.price %></p>
   <p>Quantity: <%= item.item_quantity(@order) %></p>
   <p>Status: <%= item.item_status_message(@order) %></p>
-    <% if item.item_status(@order) == false && (item.item_quantity < @merchant.item.inventory) %>
-    <%= link_to "Fulfill", order_item_fulfillment_path(item_id: item.id), method: :patch %>
+      <% if item.item_status(@order) == false && (item.item_quantity(@order) < item.inventory) %>
+        <%= link_to "Fulfill", order_item_fulfillment_path(item_id: item.id), method: :patch %>
+      <% elsif item.item_quantity(@order) > item.inventory %>
+        <p>The desired quantity of this order is too high to fulfill</p>
+      <% else %>
     <% end %>
 <% end %>
