@@ -9,11 +9,13 @@ class Merchant < ApplicationRecord
                         :state,
                         :zip
 
+  validates :enabled, inclusion: { in: [true, false] }
+
   def item_count
     items.count
   end
 
-  def average_item_price
+  def average_item_price 
     items.average(:price)
   end
 
