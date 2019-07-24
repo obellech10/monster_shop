@@ -8,7 +8,7 @@ class AdminController < ApplicationController
   def ship_order
     order= Order.find(params[:order])
     order.update(status: 'shipped')
-    render :show
+    redirect_to admin_dashboard_path
   end
 
 end

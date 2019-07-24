@@ -47,5 +47,4 @@ class Item < ApplicationRecord
       "This item has not been fulfilled."
     end
   end
-
 end
