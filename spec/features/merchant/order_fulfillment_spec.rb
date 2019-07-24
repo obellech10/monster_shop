@@ -1,7 +1,5 @@
 require 'rails_helper'
 include ActionView::Helpers::NumberHelper
-# When all items in an order have been "fulfilled" by their merchants
-# The order status changes from "pending" to "packaged"
 
 RSpec.describe 'Merchant Dashboard Order Show Page' do
   describe 'As a merchant, when I visit an order show page from my dashboard' do
