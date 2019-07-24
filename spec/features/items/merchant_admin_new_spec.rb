@@ -53,10 +53,13 @@ RSpec.describe 'New Merchant Item' do
       description = "I'm an Ogre!"
 
       fill_in 'Name', with: name
-      fill_in 'Description', with: description
+      # fill_in 'Description', with: description -- absence of description for testing
       click_button 'Create Item'
 
-      expect(page).to have_content("Item details can't be left blank")
+      expect(page).to have_content("Description can't be blank")
+      expect(page).to have_content("Price is not a number")
+      expect(page).to have_content("Inventory is not a number")
+      expect(page).to have_field("Name", :with => "Ogre")
     end
 
     it "I can't enter price or inventory less than zero" do
@@ -78,8 +81,6 @@ RSpec.describe 'New Merchant Item' do
       # fill_in 'Image', with: image -- absence of image for testing
       fill_in 'Inventory', with: inventory
       click_button 'Create Item'
-
-      # expect(page).to have_content("Price can't be zero ")      
     end
   end
 end
