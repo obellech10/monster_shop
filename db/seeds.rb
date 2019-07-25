@@ -25,7 +25,7 @@ joe = User.create!(name: "Joe", address: "200 25th Ave", city: "Atlanta", state:
 oswald = User.create!(name: "Oswald", address: "42 Woodward Way", city: "Boston", state: "MA", zip: 98471, user_name: "oswald@gmail.com", password: "9012", role: 0)
 
 jack = User.create!(name: "Jack", address: "4 Green St.", city: "Austin", state: "TX", zip: 71352, user_name: "jack@gmail.com", password: "test", role: 1)
-diane = User.create!(name: "Diane", address: "1 Blue St.", city: "Denver", state: "CO", zip: 80202, user_name: "diane@gmail.com", password: "test", role: 2, merchant_id: 1)
+diane = User.create!(name: "Diane", address: "1 Blue St.", city: "Denver", state: "CO", zip: 80202, user_name: "diane@gmail.com", password: "test", role: 2, merchant_id: megan.id)
 
 order_1 = Order.create!(user: sam, status: "pending")
 order_2 = Order.create!(user: lisa, status: "pending")
