@@ -4,6 +4,8 @@ class Admin::MerchantsController < Admin::BaseController
   end
 
   def show
+    @merchant = Merchant.find(params[:id])
+    @orders = Order.all
   end
 
   def disable
