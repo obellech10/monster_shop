@@ -23,6 +23,3 @@
     <% end %>
   <% end %>
 </section>
-
-<%= button_to 'Edit', "/merchants/#{@merchant.id}/edit", method: :get %>
-<%= button_to 'Delete', "/merchants/#{@merchant.id}", method: :delete  if @merchant.order_items.empty? %>
